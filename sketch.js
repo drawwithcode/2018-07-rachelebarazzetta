@@ -11,7 +11,7 @@ function setup() {
   video = createCapture(VIDEO, ready);
   video.size(0, 0);
   imageMode(CORNER);
-  frameRate(20000);
+  // frameRate(20000);
   textAlign(CENTER);
   fill('white');
   text('It works only on crome!', width/2, height/2);
@@ -40,10 +40,10 @@ function draw() {
   var y = 0;
 
   var  vol = mic.getLevel();
+  var col = vol * 25550;
 
   for(var i = 0; i < snapshots.length ; i++){
     var index = (i + frameCount) % snapshots.length ;
-    tint( 0, vol*2550, 0);
     image(snapshots[index], x , y, w , h);
     x = x + w/2;
 
@@ -51,7 +51,10 @@ function draw() {
       x = 0;
       y = y + h/2;
     }
+
+      rectMode(CENTER);
+      fill(200, 30, col, 5);
+      noStroke();
+      rect(width/2,height/2,1360, 630);
   }
-
-
 }
