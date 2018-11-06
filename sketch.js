@@ -6,7 +6,7 @@ var total = 86;
 var mic;
 
 function setup() {
-  createCanvas(1360, 630);
+  createCanvas(windowWidth, windowHeight);
   background(52);
   video = createCapture(VIDEO, ready);
   video.size(0, 0);
@@ -14,7 +14,8 @@ function setup() {
   // frameRate(20000);
   textAlign(CENTER);
   fill('white');
-  text('It works only on crome!', width/2, height/2);
+  text('It works only on Chrome!', width/2, height/2-10);
+  text('Make noises to change color', width/2, height/2+10);
   mic = new p5.AudioIn();
   mic.start();
 }
@@ -34,13 +35,13 @@ function draw() {
   }
 }
 
-  var w = 340;
-  var h = 180;
+  var w = windowWidth/4;
+  var h = windowHeight/4;
   var x = 0;
   var y = 0;
 
   var  vol = mic.getLevel();
-  var col = vol * 25550;
+  var col = vol * 2000;
 
   for(var i = 0; i < snapshots.length ; i++){
     var index = (i + frameCount) % snapshots.length ;
@@ -55,6 +56,6 @@ function draw() {
       rectMode(CENTER);
       fill(200, 30, col, 5);
       noStroke();
-      rect(width/2,height/2,1360, 630);
+      rect(width/2,height/2,windowWidth, windowHeight);
   }
 }
